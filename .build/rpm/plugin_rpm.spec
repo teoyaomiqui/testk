@@ -8,9 +8,9 @@
 #
 
 Name:           glancenfs-1.0
-Version:        1.0.3
+Version:        1.0.7
 Url:            https://github.com/openstack/fuel-plugins
-Summary:        Title for example plugin
+Summary:        godly plugin
 License:        Apache License Version 2.0
 Source0:        glancenfs-1.0.fp
 Vendor:         Specify author or company name

@@ -1,9 +1,9 @@
 # Plugin name
 name: glancenfs
 # Human-readable name for your plugin
-title: Title for example plugin
+title: godly plugin
 # Plugin version
-version: '1.0.3'
+version: '1.0.7'
 # Description
 description: NFS storage for glance
 # Required fuel version
