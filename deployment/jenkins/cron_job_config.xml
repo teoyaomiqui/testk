@@ -17,9 +17,10 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>curl -s &quot;node-1&quot; | grep -q &quot;I’m server 2&quot;</command>
+      <command>curl -s "node-1" | grep -q "I'm server 1"</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
   <buildWrappers/>
+</project>
 
