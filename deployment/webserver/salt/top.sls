@@ -7,3 +7,7 @@ base:
     - match: pillar
     - configure_hosts
     - haproxy
+  'role:monitor':
+    - match: pillar
+    - configure_hosts
+    - jenkins
