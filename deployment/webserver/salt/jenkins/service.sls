@@ -1,5 +1,5 @@
 include:
-  jenkins.packages
+  - jenkins.packages
 
 jenkins.service:
   service.running:
