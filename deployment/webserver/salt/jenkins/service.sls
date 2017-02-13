@@ -1,3 +1,6 @@
+include:
+  jenkins.packages
+
 jenkins.service:
   service.running:
     - name: jenkins

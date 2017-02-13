@@ -1,3 +1,6 @@
+include:
+  - jenkins.extra_packages
+
 jenkins:
   pkgrepo.managed:
     - humanname: Jenkins repository
