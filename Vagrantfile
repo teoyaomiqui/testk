@@ -33,7 +33,6 @@ Vagrant.configure("2") do |config|
 
   deployment_model["hosts"].each do |host|
     role = host["role"]
-    puts role
 
     config.vm.define host["id"] do |node|
 
