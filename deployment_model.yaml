@@ -1,0 +1,34 @@
+---
+deployment_model:
+  roles:
+    - webserver
+    - loadbalancer
+
+  webserver:
+    role_specific_data:
+      dummy: data
+
+  loadbalancer:
+     role_specific_data:
+       roles_to_balance: 
+         - webserver
+
+  hosts:
+    - hostname: web-1
+      ip: 192.168.12.20
+      ram: 1024
+      id: web-1
+      role: webserver
+    - hostname: web-2
+      ip: 192.168.12.21
+      ram: 1024
+      id: web-2
+      role: webserver
+    - hostname: lb-1
+      ip: 192.168.12.30
+      ram: 1024
+      id: haproxy-1
+      role: loadbalancer
+
+  
+

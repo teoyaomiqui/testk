@@ -1,0 +1,22 @@
+---
+deployment_model:
+  role_specific_data:
+    monitor:
+      dummy: data 
+    load_balancer:
+      dummy: data
+    webserver:
+      dummy: data
+  hosts:
+    - hostname: haproxy
+      ip: 192.168.12.30
+      role: load_balancer
+      ram: 1024
+    - hostname: web-1
+      ip: 192.168.12.20
+      role: webserver
+      ram: 1024
+    - hostname: web-2
+      ip: 192.168.12.21
+      role: webserver
+      ram: 1024
