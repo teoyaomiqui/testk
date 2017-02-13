@@ -10,14 +10,14 @@ deployment_model = YAML.load_file('deployment_model.yaml')['deployment_model']
 
 role_to_host_mapping = Hash.new
 
-#deployment_model["roles"].each do |role|
-#  hosts_list = Array.new
-#  deployment_model["hosts"].each do |host|
-#    if host_list["role"] == role
-#      role_to_host_mapping[role] = hosts_list.push(host["hostname"])
-#    end
-#  end
-#end
+deployment_model["roles"].each do |role|
+  hosts_list = Array.new
+  deployment_model["hosts"].each do |host|
+    if host["role"] == role
+      role_to_host_mapping[role] = hosts_list.push(host["hostname"])
+    end
+  end
+end
 
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
@@ -31,23 +31,24 @@ Vagrant.configure("2") do |config|
   # `vagrant box outdated`. This is not recommended.
   # config.vm.box_check_update = false
 
-  config.vm.provider :libvirt do |domain|
-    domain.memory = 4096
-    domain.nested = true
-  end
-
-
   deployment_model["hosts"].each do |host|
     role = host["role"]
     puts role
 
     config.vm.define host["id"] do |node|
+
       node.vm.synced_folder "deployment/webserver/salt", "/srv/salt"
       node.vm.hostname = host["hostname"]
       node.vm.network :private_network,
       :ip => host["ip"],
       :libvirt__dhcp_enabled => false,
       :libvirt__forward_mode => "none"
+
+      node.vm.provider :libvirt do |domain|
+        domain.memory = host["ram"]
+        domain.nested = true
+      end
+
 
       node.vm.provision :salt do |salt|
         salt.masterless = true
@@ -58,6 +59,7 @@ Vagrant.configure("2") do |config|
 	salt.pillar({"hosts" => deployment_model["hosts"]})
 	salt.pillar({"role" => role})
         salt.pillar(deployment_model[role]["role_specific_data"])
+        salt.pillar({"role_to_host_mapping" => role_to_host_mapping})
       end
     end
   end

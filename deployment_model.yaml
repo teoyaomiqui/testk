@@ -3,15 +3,20 @@ deployment_model:
   roles:
     - webserver
     - loadbalancer
+    - monitor
 
   webserver:
     role_specific_data:
       dummy: data
 
   loadbalancer:
-     role_specific_data:
-       roles_to_balance: 
-         - webserver
+    role_specific_data:
+      roles_to_balance: 
+        - webserver
+  monitor:
+    role_specific_data:
+       roles_to_monitor:
+        - loadbalancer 
 
   hosts:
     - hostname: web-1
@@ -29,6 +34,10 @@ deployment_model:
       ram: 1024
       id: haproxy-1
       role: loadbalancer
-
+    - hostname: jenkins-1
+      ram: 4096
+      id: ci-cd
+      role: monitor
+      ip: 192.168.12.40
   
 
