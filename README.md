@@ -8,16 +8,7 @@ Vagrant deployment of 2 apache2 webservers behind loadbalancer and jenkins as se
 - [Host machine requirements](#host-machine-requirements)
 - [Deployment topology overview](#deployment-topology-overview)
 - [Deployment instructions](#deployment-instructions)
-- [Time](#time)
-- [Post-Processing](#post-processing)
-- [Ray Tracing & Distance Functions](#ray-tracing--distance-functions)
-- [Text, Lines & Shapes](#text-lines--shapes)
-- [Non-Photorealistic Rendering](#non-photorealistic-rendering)
-- [Math](#math)
-- [Misc Optimizations](#misc-optimizations)
-- [Collections](#collections)
-- [Bloggers](#bloggers)
-- [Tools](#tools)
+
 ## Deployment technological stack
 This basic deployment is provided to demonstrate potential for the following technological stack:
 - Ubuntu 16.04 xenial linux distribution
@@ -48,7 +39,7 @@ This basic deployment is provided to demonstrate potential for the following tec
 ```
 - Use vagrant to deploy virtual machines:
 ```bash
-vagrant up –provider libvirt
+vagrant up --provider libvirt
 ```
 
 
