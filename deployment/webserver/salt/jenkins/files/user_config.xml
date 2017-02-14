@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <user>
-  <fullName>service</fullName>
+  <fullName>{{ pillar["jenkins"]["user"] }}</fullName>
   <properties>
     <jenkins.security.ApiTokenProperty>
       <apiToken>{AQAAABAAAAAwatSCrYcmfNQHgzlXm1NpGwecY71aS6p9GkgSD2u2hPIZbXEE8N8zu13/dvlXbk1n8z/3q4Uj1+SYTqL68lnhow==}</apiToken>

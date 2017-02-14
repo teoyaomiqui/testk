@@ -29,10 +29,9 @@ jenkins:
       - force: true
       - init_delay: 20
 
-
 jenkins_user:
   file.managed:
-    - name: /var/lib/jenkins/users/service/config.xml
+    - name: /var/lib/jenkins/users/{{ pillar["jenkins"]["user"] }}/config.xml
     - source: salt://jenkins/files/user_config.xml
     - user: jenkins
     - group: jenkins
@@ -41,6 +40,7 @@ jenkins_user:
     - makedirs: true
     - require:
       - pkg: jenkins
+
 
 jenkins.create_job:
   module.run:

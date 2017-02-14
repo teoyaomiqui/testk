@@ -6,38 +6,31 @@ deployment_model:
     - monitor
 
   webserver:
-    role_specific_data:
-      dummy: data
-
+    dummy: data
   loadbalancer:
-    role_specific_data:
-      dummy: data
+    dummy: data
   monitor:
     jenkins:
       password: Passw0rd
-      password_hash:
-    role_specific_data:
-      dummy: data
+      password_hash: "$2a$10$P3jK32SmwCAZd8pBWg/x9uoO.WX0ugFROYmjbELLsJBjAjTJOaMRy"
+      url: "http://localhost:8080" 
+      user: service
 
   hosts:
     - hostname: web-1
       ip: 192.168.12.20
       ram: 1024
-      id: web-1
       role: webserver
     - hostname: web-2
       ip: 192.168.12.21
       ram: 1024
-      id: web-2
       role: webserver
     - hostname: lb-1
       ip: 192.168.12.30
       ram: 1024
-      id: haproxy-1
       role: loadbalancer
     - hostname: jenkins-1
       ram: 4096
-      id: ci-cd
       role: monitor
       ip: 192.168.12.40
   
