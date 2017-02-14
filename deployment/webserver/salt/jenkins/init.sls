@@ -1,3 +1,2 @@
 include:
-  - jenkins.service
-
+  - jenkins.jenkins

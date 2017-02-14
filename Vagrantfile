@@ -4,7 +4,7 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
-require 'yaml'
+require "yaml"
 
 deployment_model = YAML.load_file('deployment_model.yaml')['deployment_model']
 
@@ -18,6 +18,10 @@ deployment_model["roles"].each do |role|
     end
   end
 end
+
+jenkins_password = deployment_model["monitor"]["jenkins"]["password"] 
+jenkins_hash = {"password_hash" => "$2a$10$P3jK32SmwCAZd8pBWg/x9uoO.WX0ugFROYmjbELLsJBjAjTJOaMRy", "password" => jenkins_password, "user" => "admin", "url" => "http://localhost:8080"}
+
 
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
@@ -57,8 +61,11 @@ Vagrant.configure("2") do |config|
 	salt.verbose = true
 	salt.pillar({"hosts" => deployment_model["hosts"]})
 	salt.pillar({"role" => role})
+        if role == "monitor"
+          deployment_model[role]["role_specific_data"]["jenkins"] = jenkins_hash
+        end 
         salt.pillar(deployment_model[role]["role_specific_data"])
-        salt.pillar({"role_to_host_mapping" => role_to_host_mapping})
+        salt.pillar(role_to_host_mapping)
       end
     end
   end

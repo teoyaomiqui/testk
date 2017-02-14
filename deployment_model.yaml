@@ -11,12 +11,12 @@ deployment_model:
 
   loadbalancer:
     role_specific_data:
-      roles_to_balance: 
-        - webserver
+      dummy: data
   monitor:
+    jenkins:
+      password: Passw0rd
     role_specific_data:
-       roles_to_monitor:
-        - loadbalancer 
+      dummy: data
 
   hosts:
     - hostname: web-1
