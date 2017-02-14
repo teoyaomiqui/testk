@@ -5,9 +5,10 @@ apache2:
     - running
     - require:
       - pkg: apache2
+
 #  file.managed:
 #    - name: /etc/apache2/apache2.conf
-#    - source: salt://apache2.conf
+#    - source: salt://apache/files/apache2.conf
 #    - template: jinja
 #    - user: apache2
 #    - group: apache2
@@ -18,7 +19,7 @@ apache2:
 apache2_index_page:
   file.managed:
     - name: /var/www/html/index.html
-    - source: salt://files/index.html
+    - source: salt://apache/files/index.html
     - user: www-data
     - group: www-data
     - mode: 644

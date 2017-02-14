@@ -52,7 +52,7 @@ jenkins.create_job:
   module.run:
     - name: jenkins.create_job
     - m_name: web
-    - m_config_xml: /tmp/job-1.xml
+    - config_xml: /tmp/job-1.xml
     - require:
       - sls: jenkins.extra_packages
       - service: jenkins

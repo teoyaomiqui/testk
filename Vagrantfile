@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.define host["id"] do |node|
 
-      node.vm.synced_folder "deployment/webserver/salt", "/srv/salt"
+      node.vm.synced_folder "deployment/salt", "/srv/salt"
       node.vm.hostname = host["hostname"]
       node.vm.network :private_network,
       :ip => host["ip"],

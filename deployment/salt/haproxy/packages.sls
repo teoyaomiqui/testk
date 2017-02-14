@@ -7,7 +7,7 @@ haproxy:
 
 /etc/haproxy/haproxy.cfg:
   file.managed:
-    - source: salt://files/haproxy.cfg
+    - source: salt://haproxy/files/haproxy.cfg
     - template: jinja
     - user: root
     - group: root
