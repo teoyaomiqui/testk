@@ -5,18 +5,31 @@ deployment_model:
     - loadbalancer
     - monitor
 
+# dummy isn't used, ignore it
   webserver:
     dummy: data
   loadbalancer:
     dummy: data
+
+# vip - virtual ip address
+# currently vip will be used by jenkins to check website availability 
+# TODO: vip should be available as a pillar to all nodes during deployment
   monitor:
-    vip: lb-1
+    vip: lb-1 
+
+# to provide different password for jenkins user change password here and generate new bcrypt hash
+# this password/user/url is also used to create jenkins job
+# TODO: generate hash during deployment instead of this
+# hash is used to create new user
     jenkins:
       password: Passw0rd
       password_hash: "$2a$10$P3jK32SmwCAZd8pBWg/x9uoO.WX0ugFROYmjbELLsJBjAjTJOaMRy"
       url: "http://localhost:8080" 
       user: service
 
+# modify deployments hosts, variables here are self explanatory
+# ids are used by vagrant when vms are created
+# to ssh to vagrant use "vagrant ssh <id>
   hosts:
     - hostname: web-1
       ip: 192.168.12.20

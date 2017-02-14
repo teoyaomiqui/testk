@@ -20,7 +20,7 @@ This basic deployment is provided to demonstrate potential for the following tec
 
 ## Host machine requirements:
 - Ubuntu 16.04 Xenial host machine with 4G of RAM
-- Vagrant version 1.8.7 (patch has to be applied to fix the [reported bug](https://github.com/mitchellh/vagrant/issues/8005):
+- Vagrant version 1.8.7 (patch has to be applied to fix the [reported bug](https://github.com/mitchellh/vagrant/issues/8005)
 - KVM + Libvirt stack installed
 - Vagrant libvirt-plugin version 0.0.35
 - Internet access
@@ -39,12 +39,12 @@ This basic deployment is provided to demonstrate potential for the following tec
 
 git clone https://github.com/teoyaomiqui/testk
 ```
-- Carefuly edit deployment_model.yaml file to adjust deployment to match your needs, read comments to understand how they can impact the deployment
+- Carefuly edit deployment_model.yaml file to adjust deployment to match your needs, read comments to understand how they can impact the deployment:
 ```bash
 
 vim deployment_model.yaml
 ```
-- Run prepare_env.sh script to prepare Vagrant environment with sudo privileges, script installs Libvirt and KVM stack and patch Vagrant to fix [vagrant issue](Deployment instructions):
+- Run prepare_env.sh script to prepare Vagrant environment with sudo privileges, script installs Libvirt and KVM stack and patch Vagrant to fix [vagrant issue](https://github.com/mitchellh/vagrant/issues/8005):
 ```bash
 
 ./prepare_env.sh
@@ -60,6 +60,7 @@ vagrant up --provider libvirt
 - Vagrant box used was [yk0/ubuntu-xenial](https://atlas.hashicorp.com/yk0/boxes/ubuntu-xenial)
 - Versions specified in requirements are must, and chosen to be most stable of what currently is available
 - If prepare_env.sh script isn't used, be sure to fix [reported bug](https://github.com/mitchellh/vagrant/issues/8005)
+- Host machine CPU has to support hardware virtualization
 
 ## External links and documentation
 - [Vagrant project](https://www.vagrantup.com/)
