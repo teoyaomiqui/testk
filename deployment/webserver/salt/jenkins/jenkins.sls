@@ -42,12 +42,19 @@ jenkins_user:
       - pkg: jenkins
 
 
+job_xml:
+  file.managed:
+    - name: /tmp/job-1.xml
+    - source: salt://jenkins/files/job-1.xml
+    - template: jinja
+
 jenkins.create_job:
   module.run:
     - name: jenkins.create_job
     - m_name: web
-    - m_config_xml: salt://jenkins/config.xml
+    - m_config_xml: /tmp/job-1.xml
     - require:
       - sls: jenkins.extra_packages
       - service: jenkins
       - file: jenkins_user
+      - file: job_xml

@@ -16,7 +16,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>curl -s "node-1" | grep -q "I'm web-1"</command>
+      <command>curl -s {{ pillar["vip"] }} | grep -q "I'm {{ pillar["webserver"][0] }}"</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>

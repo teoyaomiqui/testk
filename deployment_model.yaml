@@ -10,6 +10,7 @@ deployment_model:
   loadbalancer:
     dummy: data
   monitor:
+    vip: lb-1
     jenkins:
       password: Passw0rd
       password_hash: "$2a$10$P3jK32SmwCAZd8pBWg/x9uoO.WX0ugFROYmjbELLsJBjAjTJOaMRy"
@@ -21,17 +22,21 @@ deployment_model:
       ip: 192.168.12.20
       ram: 1024
       role: webserver
+      id: web-1
     - hostname: web-2
       ip: 192.168.12.21
       ram: 1024
       role: webserver
+      id: web-2
     - hostname: lb-1
       ip: 192.168.12.30
       ram: 1024
       role: loadbalancer
+      id: haproxy-1
     - hostname: jenkins-1
       ram: 4096
       role: monitor
       ip: 192.168.12.40
+      id: jenkins-1
   
 
