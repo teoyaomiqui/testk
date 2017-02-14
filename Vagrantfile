@@ -20,7 +20,7 @@ deployment_model["roles"].each do |role|
 end
 
 jenkins_password = deployment_model["monitor"]["jenkins"]["password"] 
-jenkins_hash = {"password_hash" => "$2a$10$P3jK32SmwCAZd8pBWg/x9uoO.WX0ugFROYmjbELLsJBjAjTJOaMRy", "password" => jenkins_password, "user" => "admin", "url" => "http://localhost:8080"}
+jenkins_hash = {"password_hash" => "$2a$10$P3jK32SmwCAZd8pBWg/x9uoO.WX0ugFROYmjbELLsJBjAjTJOaMRy", "password" => jenkins_password, "user" => "service", "url" => "http://localhost:8080"}
 
 
 Vagrant.configure("2") do |config|
@@ -58,6 +58,7 @@ Vagrant.configure("2") do |config|
 	salt.run_highstate = true
 	salt.install_type = "git"
 	salt.install_args = "v2016.11.2"
+        salt.bootstrap_options = "-p python-jenkins"
 	salt.verbose = true
 	salt.pillar({"hosts" => deployment_model["hosts"]})
 	salt.pillar({"role" => role})

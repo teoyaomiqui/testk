@@ -15,6 +15,7 @@ deployment_model:
   monitor:
     jenkins:
       password: Passw0rd
+      password_hash:
     role_specific_data:
       dummy: data
 

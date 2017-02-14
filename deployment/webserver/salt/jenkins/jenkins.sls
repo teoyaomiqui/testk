@@ -1,24 +1,6 @@
 include:
   - jenkins.extra_packages
 
-jenkins_job:
-  jenkins.present:
-    - name: web
-    - config: "salt://jenkins/files/job-1.xml"
-    - require:
-      - sls: jenkins.extra_packages
-
-jenkins.user:
-  file.managed:
-    - name: /var/lib/jenkins/users/admin/config.xml
-    - source: "salt://jenkins/files/user_config.xml"
-    - user: jenkins
-    - group: jenkins
-    - mode: 644
-    - template: jinja
-    - watch_in:
-      - service: jenkins
-
 jenkins:
   pkgrepo.managed:
     - humanname: Jenkins repository
@@ -29,7 +11,7 @@ jenkins:
     - require_in:
       - pkg: jenkins
     - require:
-      - sls: jenkins.extra_packages 
+      - sls: jenkins.extra_packages
   pkg:
     - installed
   service.running:
@@ -37,6 +19,35 @@ jenkins:
     - enable: True
     - require:
       - pkg: jenkins
+    - init_delay: 20
     - watch:
+      - file: jenkins_user
+
+    - mod_watch:
+      - sfun: running
+      - reload: true
+      - force: true
+      - init_delay: 20
+
+
+jenkins_user:
+  file.managed:
+    - name: /var/lib/jenkins/users/service/config.xml
+    - source: salt://jenkins/files/user_config.xml
+    - user: jenkins
+    - group: jenkins
+    - mode: 644
+    - template: jinja
+    - makedirs: true
+    - require:
       - pkg: jenkins
 
+jenkins.create_job:
+  module.run:
+    - name: jenkins.create_job
+    - m_name: web
+    - m_config_xml: salt://jenkins/config.xml
+    - require:
+      - sls: jenkins.extra_packages
+      - service: jenkins
+      - file: jenkins_user
