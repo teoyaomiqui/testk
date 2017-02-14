@@ -6,6 +6,9 @@ apache2:
     - require:
       - pkg: apache2
 
+## for current set up, there is no need to modify default enabled site config
+## that ubuntu apache package provides
+
 #  file.managed:
 #    - name: /etc/apache2/apache2.conf
 #    - source: salt://apache/files/apache2.conf
@@ -15,6 +18,9 @@ apache2:
 #    - mode: 644
 #    - require:
 #      - user: apache2
+
+## modify index.html, to display "i'am ${fqdn}"
+## perhaps could use ${hostname} instead. 
 
 apache2_index_page:
   file.managed:
