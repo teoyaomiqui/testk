@@ -1,4 +1,5 @@
 #!/bin/bash
+#TODO: Refactore this scrpit to be less hardcoded
 set -e
 
 VAGRANTFILETOPATCH="/opt/vagrant/embedded/gems/gems/vagrant-1.8.7/plugins/provisioners/salt/provisioner.rb"
